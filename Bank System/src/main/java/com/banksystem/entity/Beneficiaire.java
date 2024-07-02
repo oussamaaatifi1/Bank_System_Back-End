@@ -14,5 +14,4 @@ public class Beneficiaire {
     @JoinColumn(name = "compte_id")
     private CompteBancaire compteBancaire;
 
-    // Getters and setters
 }
