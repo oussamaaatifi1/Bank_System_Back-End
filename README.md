@@ -3,61 +3,57 @@
 # Bank Solutions e-bank Application
 
 ## Project Context
-You are a junior developer in the IT department of Bank Solutions. The bank has traditionally focused on providing on-site banking services. Your manager has tasked you with developing the backend of the e-bank application. This application aims to provide a secure and intuitive platform for users to manage their bank accounts and conduct financial transactions online.
-
+Vous êtes développeur junior au sein du département informatique de Bank Solutions. La banque se concentre traditionnellement sur la fourniture de services bancaires sur place. Votre responsable vous a chargé de développer le backend de l'application e-banque. Cette application vise à fournir une plateforme sécurisée et intuitive permettant aux utilisateurs de gérer leurs comptes bancaires et d'effectuer des transactions financières en ligne.
 ## User Stories
 
-### Account Management
+### Gestion de compte
 
 #### Creating Bank Accounts
-As a user, I want to create a new bank account (current, savings, etc.) to manage my finances.
-- Account Type (Current, Savings, etc.)
-- Initial Balance
-- Creation Date
+En tant qu'utilisateur, je souhaite créer un nouveau compte bancaire (courant, épargne, etc.) pour gérer mes finances.
+- Type de compte (courant, épargne, etc.)
+- Balance initiale
+- Date de création
 
 #### Viewing Balances and Transaction History
-As a user, I want to view the balance and transaction history of my accounts to track my expenses and income.
-- Transaction ID
-- Date and Time
-- Amount
-- Transaction Type (Credit, Debit)
+En tant qu'utilisateur, je souhaite consulter le solde et l'historique des transactions de mes comptes pour suivre mes dépenses et mes revenus.
+- Identifiant de transaction
+- Date et l'heure
+- Montant
+- Type de transaction (Crédit, Débit)
 - Description
 
 #### Closing Accounts
-As a user, I want to close a bank account to stop using it, specifying the reason for closure.
-
+En tant qu'utilisateur, je souhaite fermer un compte bancaire pour ne plus l'utiliser en précisant le motif de la fermeture.
 ### Card Management
 
 #### Viewing Card Information
-As a user, I want to view my card information (number, expiration date) to know the details of my card.
-- Card Number
-- Expiration Date
-- Card Type (Debit, Credit)
+En tant qu'utilisateur, je souhaite consulter les informations de ma carte (numéro, date d'expiration) pour connaître les détails de ma carte.
+- Numéro de carte
+- Date d'expiration
+- Type de carte (débit, crédit)
 
 #### Activating and Deactivating Cards
-As a user, I want to activate or deactivate my card for security purposes.
-
+En tant qu'utilisateur, je souhaite activer ou désactiver ma carte pour des raisons de sécurité.
 #### Blocking Cards in Case of Loss or Theft
-As a user, I want to block my card in case of loss or theft to prevent fraudulent use, specifying the reason for blocking.
-
+En tant qu'utilisateur, je souhaite bloquer ma carte en cas de perte ou de vol pour éviter toute utilisation frauduleuse, en précisant le motif du blocage.
 ### Money Transfers
 
-#### Internal Transfers Between Accounts
-As a user, I want to transfer money between my own accounts to manage my funds.
-- Amount
+#### Virements internes entre comptes
+En tant qu'utilisateur, je souhaite transférer de l'argent entre mes propres comptes pour gérer mes fonds.
+- Montant
 - Description
 
-#### External Transfers to Accounts in Other Banks
-As a user, I want to transfer money to external accounts for payments or money transfers.
-- External Account Details (Account Number, Bank Name, etc.)
-- Amount
+#### Virements externes vers des comptes dans d'autres banques
+En tant qu'utilisateur, je souhaite transférer de l'argent vers des comptes externes pour des paiements ou des transferts d'argent.
+- Détails du compte externe (numéro de compte, nom de la banque, etc.)
+- Montant
 - Description
 
-#### Managing Beneficiaries
-As a user, I want to add, modify, or delete beneficiaries to facilitate my external transfers.
-- Beneficiary Name
-- Beneficiary Account Details (Account Number, Bank Name, etc.)
-
+#### Gestion des bénéficiaires
+En tant qu'utilisateur, je souhaite ajouter, modifier ou supprimer des bénéficiaires pour faciliter mes transferts externes.
+- Nom du bénéficiaire
+- Détails du compte du bénéficiaire (numéro de compte, nom de la banque, etc.)
+#### Screenshots
 ## UML Diagrams
 
 ### Use Case Diagram
@@ -72,16 +68,4 @@ Provide a class diagram depicting the structure and relationships of classes in 
 
 ### Sequence Diagram
 ![Sequence Diagram]![hPLBJiCm48RtESKegoArA9GYK1QeKBW0fUoDEwqi9KvbJxW3Do7doCMmdKTJSDE0kecYYJtppJ-Fp3KnHNcQ18nJfc158X6Q4UOg27Rca-1YnoJ1IgCwC2ooT4Vuo2HdGk4oonN7dWDFgEdWywjYKcz-E7L6Go8o6GGT5fZSEu8Ok2eBL9NlKRWmOSszS0nNKHHTHj65pKDyc4iLiNt0nDx](https://github.com/oussamaaatifi1/Bank_System_Back-End/assets/72675402/db5da1a4-b7b1-4450-867d-7dc9b51c39fe)
-
-Include a sequence diagram illustrating a typical interaction flow between a user and the e-bank application for a specific scenario.
-
-## Screenshots
-
-### Dashboard Screen
-![Dashboard](dashboard.png)
-Provide a screenshot showing the dashboard interface of the e-bank application.
-
-### Transaction History Screen
-![Transaction History](transaction-history.png)
-Include a screenshot demonstrating the transaction history view in the e-bank application.
 
