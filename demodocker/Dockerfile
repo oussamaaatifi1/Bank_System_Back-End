@@ -1,4 +1,3 @@
-FROM ubuntu:latest
-LABEL authors="user"
-
-ENTRYPOINT ["top", "-b"]
+FROM openjdk:24-oraclelinux8
+ADD target/demodocker-0.0.1-SNAPSHOT.jar demodocker-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/demodocker-0.0.1-SNAPSHOT.jar"]
