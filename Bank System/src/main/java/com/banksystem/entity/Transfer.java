@@ -1,9 +1,10 @@
 package com.banksystem.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "transfer")
 public class Transfer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

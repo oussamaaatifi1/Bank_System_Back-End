@@ -1,8 +1,10 @@
 package com.banksystem.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 
 @Entity
+@Table(name = "beneficiaire")
 public class Beneficiaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

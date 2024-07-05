@@ -1,5 +1,6 @@
 package com.banksystem.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,8 +8,9 @@ import java.util.Date;
 
 @Getter
 @Setter
+@Data
 public class CompteBancaireDTO {
-    private int compteId;
+    private Long compteId;
     private String typeCompte;
     private float solde;
     private Date dateCreation;

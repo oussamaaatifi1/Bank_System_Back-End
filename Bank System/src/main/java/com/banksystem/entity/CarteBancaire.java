@@ -1,58 +1,32 @@
 package com.banksystem.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
+@Table(name = "carteBancaire")
 public class CarteBancaire {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int numeroCarte;
+    private int carteId;
+
+    @Column(nullable = false)
+    private String numeroCarte;
+
+    @Column(nullable = false)
     private Date dateExpiration;
+
+    @Column(nullable = false)
     private String typeCarte;
 
+
     @ManyToOne
-    @JoinColumn(name = "compte_id")
+    @JoinColumn(name = "compte_id", nullable = false)
     private CompteBancaire compteBancaire;
-
-    // Constructors, getters, and setters
-    public CarteBancaire() {}
-
-    public CarteBancaire(Date dateExpiration, String typeCarte, CompteBancaire compteBancaire) {
-        this.dateExpiration = dateExpiration;
-        this.typeCarte = typeCarte;
-        this.compteBancaire = compteBancaire;
-    }
-
-    public int getNumeroCarte() {
-        return numeroCarte;
-    }
-
-    public void setNumeroCarte(int numeroCarte) {
-        this.numeroCarte = numeroCarte;
-    }
-
-    public Date getDateExpiration() {
-        return dateExpiration;
-    }
-
-    public void setDateExpiration(Date dateExpiration) {
-        this.dateExpiration = dateExpiration;
-    }
-
-    public String getTypeCarte() {
-        return typeCarte;
-    }
-
-    public void setTypeCarte(String typeCarte) {
-        this.typeCarte = typeCarte;
-    }
-
-    public CompteBancaire getCompteBancaire() {
-        return compteBancaire;
-    }
-
-    public void setCompteBancaire(CompteBancaire compteBancaire) {
-        this.compteBancaire = compteBancaire;
-    }
 }
