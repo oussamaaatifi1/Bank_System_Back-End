@@ -21,9 +21,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDTO createTransaction(TransactionDTO transactionDTO) {
-        Optional<CompteBancaire> optionalCompteSource = compteBancaireRepository.findById(transactionDTO.getCompteSource());
+        Optional<CompteBancaire> optionalCompteSource = compteBancaireRepository.findById(transactionDTO.getCompteSourceId());
         if (optionalCompteSource.isEmpty()) {
-            System.err.println("CompteBancaire not found with compteSourceId: " + transactionDTO.getCompteSource());
+            System.err.println("CompteBancaire not found with compteSourceId: " + transactionDTO.getCompteSourceId());
             throw new RuntimeException("CompteBancaire source not found");
         }
 
@@ -32,10 +32,10 @@ public class TransactionServiceImpl implements TransactionService {
 
         // Find the destination account, if provided
         CompteBancaire compteDestination = null;
-        if (transactionDTO.getCompteDes() != 0) {
-            Optional<CompteBancaire> optionalCompteDestination = compteBancaireRepository.findById(transactionDTO.getCompteDes());
+        if (transactionDTO.getCompteDestinationId() != 0) {
+            Optional<CompteBancaire> optionalCompteDestination = compteBancaireRepository.findById(transactionDTO.getCompteDestinationId());
             if (optionalCompteDestination.isEmpty()) {
-                System.err.println("CompteBancaire not found with compteDestinationId: " + transactionDTO.getCompteDes());
+                System.err.println("CompteBancaire not found with compteDestinationId: " + transactionDTO.getCompteDestinationId());
                 throw new RuntimeException("CompteBancaire destination not found");
             }
             compteDestination = optionalCompteDestination.get();
@@ -45,20 +45,15 @@ public class TransactionServiceImpl implements TransactionService {
         // Create the transaction
         Transaction transaction = new Transaction();
         transaction.setCompteBancaire(compteSource);
-        transaction.setCompteDest(compteDestination);
         transaction.setMontant(transactionDTO.getMontant());
         transaction.setTypeTransaction(transactionDTO.getTypeTransaction());
         transaction.setDateHeure(new Date());
 
         Transaction savedTransaction = transactionRepository.save(transaction);
 
-        // Prepare the response DTO
         TransactionDTO savedTransactionDTO = new TransactionDTO();
         savedTransactionDTO.setIdTransaction(savedTransaction.getIdTransaction());
-        savedTransactionDTO.setCompteSource(savedTransaction.getCompteBancaire().getCompteId());
-        if (savedTransaction.getCompteDest() != null) {
-            savedTransactionDTO.setCompteDes(savedTransaction.getCompteDest().getCompteId());
-        }
+        savedTransactionDTO.setCompteSourceId(savedTransaction.getCompteBancaire().getCompteId());
         savedTransactionDTO.setMontant(savedTransaction.getMontant());
         savedTransactionDTO.setTypeTransaction(savedTransaction.getTypeTransaction());
         savedTransactionDTO.setDateHeure(savedTransaction.getDateHeure());
