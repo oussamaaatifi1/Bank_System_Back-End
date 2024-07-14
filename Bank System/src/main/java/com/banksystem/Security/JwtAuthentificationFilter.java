@@ -27,20 +27,23 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain
-    ) throws ServletException, IOException {
-        final String autheader = request.getHeader("Authorisation");
+            @NonNull FilterChain filterChain)
+            throws ServletException, IOException {
+        final String authHadeader = request.getHeader("Authorization");
         final String jwt;
-        final String email;
-        if (autheader == null ||! autheader.startsWith("Bearer ")) {
-            filterChain.doFilter(request,response);
+        final String userEmail;
+        if (authHadeader == null || !authHadeader.startsWith("Bearer ") ){
+            filterChain.doFilter(request, response);
             return;
         }
-        jwt = autheader.substring(7);
-        email = jwtservice.extractemail(jwt);
-        if(email != null && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(email);
-            if(jwtservice.isTokenValid(jwt,userDetails)){
+        jwt= authHadeader.substring(7);
+        userEmail = jwtservice.extractUserEmail(jwt);
+
+        // valider token
+        if(userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null){
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+
+            if (jwtservice.isTokenValid(jwt, userDetails)){
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
@@ -52,7 +55,9 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
+
         filterChain.doFilter(request, response);
+
     }
 }
 
