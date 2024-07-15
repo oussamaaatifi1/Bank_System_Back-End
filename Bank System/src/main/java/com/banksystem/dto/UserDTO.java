@@ -1,16 +1,14 @@
 package com.banksystem.dto;
 
-import lombok.Data;
+import com.banksystem.entity.Role;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Data
 public class UserDTO {
-    private Long userId;
+    private String username;
+    private String password;
     private String nom;
-    private String email;
-    private String MotDePasse;
+    private Role role;
 }
-

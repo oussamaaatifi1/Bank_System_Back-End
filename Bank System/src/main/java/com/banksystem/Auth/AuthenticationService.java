@@ -1,12 +1,13 @@
 package com.banksystem.Auth;
 
 import com.banksystem.entity.Role;
-import com.banksystem.entity.User;
+import com.banksystem.entity.Users;
 import com.banksystem.repository.UserRepository;
 import com.banksystem.service.Jwtservice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +22,10 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request) {
 
-        var user = User.builder()
+        var user = Users.builder()
                 .nom(request.getNom())
-                .email(request.getEmail())
-                .motDePasse(passwordEncoder.encode(request.getMotDePasse()))
+                .username(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();
         userRepository.save(user);
@@ -36,17 +37,19 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-
-        authenticationManager.authenticate(
+        Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getMotDePasse()
+                        request.getUsername(),
+                        request.getPassword()
                 )
         );
 
-        var user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow();
-        var jwtToken = jwtservice.generateToken(user);
+        // If authentication successful, retrieve user details
+        Users user = (Users) authentication.getPrincipal();
+
+        // Generate JWT token for the authenticated user
+        String jwtToken = jwtservice.generateToken(user);
+
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

@@ -3,7 +3,7 @@ package com.banksystem.service;
 import com.banksystem.dto.CompteBancaireDTO;
 import com.banksystem.dto.UserDTO;
 import com.banksystem.entity.CompteBancaire;
-import com.banksystem.entity.User;
+import com.banksystem.entity.Users;
 import com.banksystem.repository.CompteBancaireRepository;
 import com.banksystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class CompteBancaireServiceImpl implements CompteBancaireService {
 
     @Override
     public CompteBancaireDTO CreateCompte(CompteBancaireDTO compteBancaireDTO) {
-        User user = userRepository.findById(compteBancaireDTO.getUserId())
+        Users user = userRepository.findById(compteBancaireDTO.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         CompteBancaire compteBancaire = new CompteBancaire();
@@ -37,7 +37,7 @@ public class CompteBancaireServiceImpl implements CompteBancaireService {
         CompteBancaire savedCompteBancaire = compteBancaireRepository.save(compteBancaire);
 
         CompteBancaireDTO savedCompteBancaireDTO = new CompteBancaireDTO();
-        savedCompteBancaireDTO.setUserId(savedCompteBancaire.getUser().getUserId());
+        savedCompteBancaireDTO.setUserId(savedCompteBancaire.getUser().getUser_id());
         savedCompteBancaireDTO.setTypeCompte(savedCompteBancaire.getTypeCompte());
         savedCompteBancaireDTO.setSolde(savedCompteBancaire.getSolde());
         savedCompteBancaireDTO.setDateCreation(savedCompteBancaire.getDateCreation());
@@ -50,7 +50,7 @@ public class CompteBancaireServiceImpl implements CompteBancaireService {
         return compteBancaireRepository.findAll().stream()
                 .map(compte -> {
                     CompteBancaireDTO dto = new CompteBancaireDTO();
-                    dto.setUserId(compte.getUser().getUserId());
+                    dto.setUserId(compte.getUser().getUser_id());
                     dto.setTypeCompte(compte.getTypeCompte());
                     dto.setSolde(compte.getSolde());
                     dto.setDateCreation(compte.getDateCreation());

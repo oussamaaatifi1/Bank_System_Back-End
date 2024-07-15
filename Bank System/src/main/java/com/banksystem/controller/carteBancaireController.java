@@ -4,7 +4,6 @@ import com.banksystem.dto.CarteBancaireDTO;
 import com.banksystem.dto.CompteBancaireDTO;
 import com.banksystem.dto.UserDTO;
 import com.banksystem.entity.CarteBancaire;
-import com.banksystem.entity.User;
 import com.banksystem.service.CartesBancaireService;
 import com.banksystem.service.CartesBancaireServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

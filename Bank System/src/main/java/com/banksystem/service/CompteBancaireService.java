@@ -3,7 +3,6 @@ package com.banksystem.service;
 import com.banksystem.dto.CompteBancaireDTO;
 import com.banksystem.dto.UserDTO;
 import com.banksystem.entity.CompteBancaire;
-import com.banksystem.entity.User;
 
 import java.util.List;
 
